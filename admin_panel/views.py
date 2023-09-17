@@ -34,6 +34,8 @@ class LoginPanel(APIView):
             return Response(data=response_data, status=status.HTTP_200_OK)
 
         return Response({'Invalid': 'Username and password are wrong'}, status=status.HTTP_403_FORBIDDEN)
+
+
 class AdminUser(APIView):
     def post(self, request):
         serializer = AdminUserSerializer(data=request.data)
@@ -41,7 +43,6 @@ class AdminUser(APIView):
         serializer.save()
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
-
 
 
 class CreateUser(APIView):
@@ -77,7 +78,6 @@ class Users(APIView):
         return Response(serializer.data, status.HTTP_200_OK)
 
 
-
 class CreateMenu(APIView):
     permission_classes = [IsAdminOrReadOnly]
 
@@ -86,9 +86,6 @@ class CreateMenu(APIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_200_OK)
-
-
-
 
 
 class OrderReport(APIView):
@@ -172,6 +169,7 @@ class DeleteFood(APIView):
         serializer.save()
         return Response(status=status.HTTP_202_ACCEPTED)
 
+
 class DeleteMenu(APIView):
     permission_classes = [IsAdminOrReadOnly]
 
@@ -184,7 +182,6 @@ class DeleteMenu(APIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(status=status.HTTP_202_ACCEPTED)
-
 
 
 class UpdateFood(APIView):
